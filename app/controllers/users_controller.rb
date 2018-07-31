@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
+  skip_before_action :check_logined, only: [:new]
 
   def index 
     @users = User.all
@@ -12,6 +13,8 @@ class UsersController < ApplicationController
   def create 
     @user = User.new(user_params)
     if @user.save
+      log_in @user
+      flash[:success] = "新規登録に成功しました"
       redirect_to '/users'
     else
       render 'new'
