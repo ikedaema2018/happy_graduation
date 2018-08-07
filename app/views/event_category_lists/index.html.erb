@@ -5,7 +5,8 @@
 <table>
   <thead>
     <tr>
-      <th>Event category name</th>
+      <th>イベントカテゴリーID</th>
+      <th>イベントカテゴリー名</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -13,10 +14,12 @@
   <tbody>
     <% @event_category_lists.each do |event_category_list| %>
       <tr>
+        <td><%= event_category_list.id %></td>
         <td><%= event_category_list.event_category_name %></td>
         <td><%= link_to 'Show', event_category_list %></td>
         <td><%= link_to 'Edit', edit_event_category_list_path(event_category_list) %></td>
-        <td><%= link_to 'Destroy', event_category_list, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+         <%# 
+         <td><%= link_to 'Destroy', event_category_list, method: :delete, data: { confirm: 'Are you sure?' } %>
       </tr>
     <% end %>
   </tbody>
@@ -24,4 +27,4 @@
 
 <br>
 
-<%= link_to 'New Event Category List', new_event_category_list_path %>
+<%= link_to '新しいイベントを作る', new_event_category_list_path %>

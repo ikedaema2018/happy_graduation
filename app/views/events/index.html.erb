@@ -1,2 +1,24 @@
 <h1>Events#index</h1>
-<p>Find me in app/views/events/index.html.erb</p>
+<p><%= notice %></p>
+<p><%= flash[:success] %></p>
+
+<table>
+  <tr>
+    <th>ID</th>
+    <th>イベント名</th>
+    <th>カテゴリーID</th>
+    <th>イベント詳細</th>
+    <th>イベントフラグ</th>
+  </tr>
+
+  <% @events.each do |event| %>
+  <tr>
+    <td><%= event.id %></td>
+    <td><%= event.event_name %></td>
+    <td><%= event.event_category_id %></td>
+    <td><%= event.event_category_name %></td>
+    <td><%= event.event_detail %></td>
+    <td><%= event.event_flag %></td>
+  </tr>
+  <% end %>
+</table>

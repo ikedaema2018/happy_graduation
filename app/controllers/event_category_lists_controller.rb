@@ -53,13 +53,15 @@ class EventCategoryListsController < ApplicationController
 
   # DELETE /event_category_lists/1
   # DELETE /event_category_lists/1.json
-  def destroy
-    @event_category_list.destroy
-    respond_to do |format|
-      format.html { redirect_to event_category_lists_url, notice: 'Event category list was successfully destroyed.' }
-      format.json { head :no_content }
-    end
-  end
+
+  # デリートはしない！！！
+  # def destroy
+  #   @event_category_list.destroy
+  #   respond_to do |format|
+  #     format.html { redirect_to event_category_lists_url, notice: 'Event category list was successfully destroyed.' }
+  #     format.json { head :no_content }
+  #   end
+  # end
 
   private
     # Use callbacks to share common setup or constraints between actions.

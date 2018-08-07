@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180807022900) do
+ActiveRecord::Schema.define(version: 20180807153859) do
 
   create_table "chat_messages", force: :cascade do |t|
     t.string "content"
@@ -20,6 +20,12 @@ ActiveRecord::Schema.define(version: 20180807022900) do
     t.integer "your_id"
   end
 
+  create_table "event_category_lists", force: :cascade do |t|
+    t.string "event_category_name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "events", force: :cascade do |t|
     t.string "event_name"
     t.integer "event_category_id"
@@ -27,6 +33,7 @@ ActiveRecord::Schema.define(version: 20180807022900) do
     t.string "event_detail"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "event_flag"
   end
 
   create_table "users", force: :cascade do |t|
