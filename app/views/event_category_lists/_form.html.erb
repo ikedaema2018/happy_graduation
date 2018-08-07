@@ -1,0 +1,22 @@
+<%= form_with(model: event_category_list, local: true) do |form| %>
+  <% if event_category_list.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(event_category_list.errors.count, "error") %> prohibited this event_category_list from being saved:</h2>
+
+      <ul>
+      <% event_category_list.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :event_category_name %>
+    <%= form.text_field :event_category_name, id: :event_category_list_event_category_name %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

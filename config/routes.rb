@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :event_category_lists
   get 'events/show'
 
   get 'events/index'
