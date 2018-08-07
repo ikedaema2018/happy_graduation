@@ -9,7 +9,7 @@ class ChatRoomChannel < ApplicationCable::Channel
   end
 
   def speak(data)
-    chat_message = ChatMessage.create!(content: data['message'])
+    chat_message = ChatMessage.create!(content: data['message']["message"], my_id: data['message']["my_id"], your_id: data['message']["your_id"])
     ActionCable.server.broadcast 'chat_room_channel', message: chat_message.content
   end
 end

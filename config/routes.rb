@@ -1,4 +1,12 @@
 Rails.application.routes.draw do
+  get 'events/show'
+
+  get 'events/index'
+
+  get 'events/create'
+
+  get 'events/update'
+
   get 'sessions/new'
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html

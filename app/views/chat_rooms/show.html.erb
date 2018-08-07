@@ -7,6 +7,9 @@
 
 
 <form>
-  投稿: <input type="text" />
+  投稿: <input type="text" id="message" />
+  <input type="hidden" id="my_id" value="<%= @my_id %>">
+  <input type="hidden" id="your_id" value="<%= @your_id %>">
+  
   <input type="submit" value="投稿" onClick="postChatMessage()">
 </form>

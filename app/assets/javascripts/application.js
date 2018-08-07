@@ -13,10 +13,14 @@
 //= require rails-ujs
 //= require turbolinks
 //= require_tree .
+//= require jquery
 
 function postChatMessage() {
   event.preventDefault();
-  var element = document.querySelector('input[type="text"]');
-  App.chat_room.speak(element.value)
-  element.value = '';
+  var element = {};
+  element.message = $('#message').val();
+  element.my_id = $('#my_id').val();
+  element.your_id = $('#your_id').val();
+  App.chat_room.speak(element);
+  $('#message').val("");
 }

@@ -14,4 +14,4 @@ App.chat_room = App.cable.subscriptions.create "ChatRoomChannel",
     # Called when there's incoming data on the websocket for this channel
 
   speak: (message) -> 
-    @perform 'speak', message: message
+    @perform 'speak', message: message,
