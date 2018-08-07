@@ -8,5 +8,5 @@ Rails.application.routes.draw do
   post '/login', to: 'sessions#create'
   delete '/logout', to: 'sessions#destroy'
 
-  get '/chat_room', to: 'chat_rooms#show'
+  get '/chat_room/:id', to: 'chat_rooms#show'
 end

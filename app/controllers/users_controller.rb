@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
-  skip_before_action :check_logined, only: [:new]
+  skip_before_action :check_logined, only: [:new, :create]
 
   def index 
     @users = User.all
@@ -11,6 +11,7 @@ class UsersController < ApplicationController
   end
 
   def create 
+    puts "a"
     @user = User.new(user_params)
     if @user.save
       log_in @user
@@ -54,7 +55,7 @@ class UsersController < ApplicationController
 
   private
     def user_params
-      params.require(:user).permit(:name, :email, :password, :password_confimation)
+      params.require(:user).permit(:name, :email, :password, :password_confirmation)
     end
 
     def set_user
