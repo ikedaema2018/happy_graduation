@@ -9,16 +9,20 @@
     <th>カテゴリーID</th>
     <th>イベント詳細</th>
     <th>イベントフラグ</th>
+    <th>edit</th>
   </tr>
 
   <% @events.each do |event| %>
   <tr>
     <td><%= event.id %></td>
     <td><%= event.event_name %></td>
-    <td><%= event.event_category_id %></td>
-    <td><%= event.event_category_name %></td>
+    <td><%= event.event_category_list.event_category_name %></td>
     <td><%= event.event_detail %></td>
     <td><%= event.event_flag %></td>
+    <td><a href="/events/<%= event.id %>/edit">編集する</a></td>
+    <td><a href="/events/<%= event.id %>/fix">FIX!</a></td>
   </tr>
   <% end %>
 </table>
+
+<a href="/events/new">新しいイベントを作る</a>

@@ -1,0 +1,10 @@
+<%= form_for(@event) do |f| %>
+  <%= f.label :event_name %><%= f.text_field :event_name %><br>
+  <p>イベントのカテゴリーを選んでください</p>
+  <%= f.collection_radio_buttons(:event_category_list_id, @event_category_lists, :id, :event_category_name) do |b| %>
+  <%= b.label {b.radio_button + b.text} %>
+  <% end %>
+  <%= f.label "イベントの詳細を入力してね" %><%= f.text_area :event_detail %>
+
+  <%= f.submit %>
+<% end %>

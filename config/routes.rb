@@ -1,12 +1,14 @@
 Rails.application.routes.draw do
   resources :event_category_lists
-  get 'events/show'
+  
+  scope 'events', as: 'events' do
+    root 'events#index'
+  end
 
-  get 'events/index'
-
-  get 'events/create'
-
-  get 'events/update'
+  get '/events/new', to: 'events#new'
+  get '/events/:id', to: 'events#show'
+  get '/events/:id/edit', to: 'events#edit'
+  post '/events', to: 'events#create'
 
   get 'sessions/new'
 
