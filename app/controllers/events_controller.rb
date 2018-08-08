@@ -1,4 +1,6 @@
 class EventsController < ApplicationController
+  before_action :set_event, only: [:show, :edit, :update, :destroy]
+
   def show
     
   end
@@ -9,7 +11,6 @@ class EventsController < ApplicationController
 
   def new
     @event = Event.new
-    @event_category_lists = EventCategoryList.all
   end
 
   def create 
@@ -26,11 +27,18 @@ class EventsController < ApplicationController
   end
 
   def edit
-    
+    @event_category_lists = EventCategoryList.all
   end
 
   def update
-    
+    respond_to do |format|
+      if @event.update(event_params)
+        format.html { redirect_to @event, notice: 'イベントのアップデートに成功しました' }
+        format.json { render :show, status: :ok, location: @event }
+      else
+        format.html { render :edit }
+        format.json { render json: @event, status: :unprocessable_entity }
+      end
   end
 
   def fix 
@@ -40,6 +48,13 @@ end
 
 private 
 
-def event_params
-  params.require(:event).permit(:event_name, :event_category_list_id, :event_detail)
+  def set_event
+    @event = Event.find(params[:id])
+  end
+
+
+  def event_params
+    params.require(:event).permit(:event_name, :event_category_list_id, :event_detail)
+  end
+
 end

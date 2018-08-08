@@ -19,6 +19,7 @@ class EventCategoryListsController < ApplicationController
 
   # GET /event_category_lists/1/edit
   def edit
+    @event = Event.find(params[:id])
   end
 
   # POST /event_category_lists
