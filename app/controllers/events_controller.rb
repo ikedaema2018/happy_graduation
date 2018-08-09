@@ -1,5 +1,5 @@
 class EventsController < ApplicationController
-  before_action :set_event, only: [:show, :edit, :update, :destroy]
+  before_action :set_event, only: [:show, :edit, :update, :destroy, :fix, :fixed]
 
   def show
     
@@ -11,9 +11,10 @@ class EventsController < ApplicationController
 
   def new
     @event = Event.new
+    @event_category_lists = EventCategoryList.all
   end
 
-  def create 
+  def create
     @event = Event.new(event_params)
     respond_to do |format|
       if @event.save
@@ -39,12 +40,33 @@ class EventsController < ApplicationController
         format.html { render :edit }
         format.json { render json: @event, status: :unprocessable_entity }
       end
+    end
   end
 
-  def fix 
+  def destroy
     
   end
-end
+
+  def fix
+    @event = Event.find(params[:id])
+    # binding.pry
+  end
+
+  def fixed
+    # puts(event_fix_params)
+    # puts "test"
+    binding.pry
+
+    respond_to do |format|
+      if @event.update(event_fix_params)
+        format.html { redirect_to @event, notice: 'イベントのフラグを変更しました' }
+        format.json { render :show, status: :ok, location: @event }
+      else
+        format.html { render :fix,notice:'失敗した' }
+        format.json { render json: @event, status: :unprocessable_entity }
+      end
+    end
+  end
 
 private 
 
@@ -55,6 +77,10 @@ private
 
   def event_params
     params.require(:event).permit(:event_name, :event_category_list_id, :event_detail)
+  end
+
+  def event_fix_params
+    params.require(:event).permit(:event_flag)
   end
 
 end

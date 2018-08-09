@@ -1,0 +1,11 @@
+
+<%=flash[:notice];%>
+
+
+<%= form_for(@event, url: fixed_event_path) do |f| %>
+  <p>イベント：<%= @event.event_name %> はもう終わりましたか？</p>
+  <label><%= f.radio_button :event_flag, 1 %>無事に完了した</label>
+  <label><%= f.radio_button :event_flag, 2 %>中止になった</label>
+  <%= f.submit '送信', data: { confirm: '保存してもいいですか？',
+   disable_with: '処理中...' } %>
+<% end %>
