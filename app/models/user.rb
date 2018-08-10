@@ -1,4 +1,6 @@
 class User < ApplicationRecord
+  has_many :event_user
+
   has_secure_password
 
   validates :name, presence: true, length: { maximum: 50 }

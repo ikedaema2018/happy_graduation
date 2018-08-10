@@ -2,7 +2,16 @@ class EventsController < ApplicationController
   before_action :set_event, only: [:show, :edit, :update, :destroy, :fix, :fixed]
 
   def show
-    
+    @event_flag = EventUser.where(user_id: current_user).where(event_id: @event.id)
+
+    if @event_flag.empty?
+      @event_user = EventUser.new
+    else
+      @event_user = @event_flag[0]
+    end
+
+    @participants = EventUser.where(event_id: @event.id)
+
   end
 
   def index
@@ -21,7 +30,7 @@ class EventsController < ApplicationController
         format.html { redirect_to "/events/#{@event.id}", notice: 'イベントの作成に成功しました' }
         format.json { render :show, status: :created, location: @event }
       else
-        format.html { render :new }
+        format.html { redirect_to "/events/new" }
         format.json { render json: @event_errors, status: :unprocessable_entity }
       end
     end
@@ -49,14 +58,9 @@ class EventsController < ApplicationController
 
   def fix
     @event = Event.find(params[:id])
-    # binding.pry
   end
 
   def fixed
-    # puts(event_fix_params)
-    # puts "test"
-    binding.pry
-
     respond_to do |format|
       if @event.update(event_fix_params)
         format.html { redirect_to @event, notice: 'イベントのフラグを変更しました' }
@@ -67,6 +71,12 @@ class EventsController < ApplicationController
       end
     end
   end
+
+  def participate
+    
+  end
+
+
 
 private 
 

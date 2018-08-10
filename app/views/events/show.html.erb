@@ -1,6 +1,47 @@
 <h1>Events#show</h1>
-<p><%= notice %></p>
+<p><%= flash[:notice] %></p>
 <p><%= flash[:success] %></p>
 
-<p><%=  %></p>
+<p><%= @event.id %></p>
+<p><%= @event.event_name %></p>
+<p><%= @event.event_category_list.event_category_name %></p>
+<p><%= @event.event_detail %></p>
+<p><%= @event.event_flag %></p>
+
+
+<% if @event_flag.nil? %>
+  <%= form_for(@event_user, url: { controller: 'event_users', action: 'create' }) do |f| %>
+    <p>このイベントに参加しますか？</p>
+    <label><%= f.radio_button :schedule_flag, 1 %>参加する</label>
+    <label><%= f.radio_button :schedule_flag, 2 %>参加しない</label>
+    <label><%= f.radio_button :schedule_flag, 3 %>未定</label>
+    
+    <%= f.hidden_field :user_id, :value => current_user.id %>
+    <%= f.hidden_field :event_id, :value => @event.id %>
+    <%= f.submit %>
+  <% end %>
+
+<% else %>
+  <%= form_for(@event_user, url: { controller: 'event_users', action: 'update' }) do |f| %>
+    <p>このイベントへ参加しますか？</p>
+    <label><%= f.radio_button :schedule_flag, 1 %>参加する</label>
+    <label><%= f.radio_button :schedule_flag, 2 %>参加しない</label>
+    <label><%= f.radio_button :schedule_flag, 3 %>未定</label>
+    
+    <%= f.hidden_field :id, value: @event_user.id %>
+    <%= f.hidden_field :user_id, :value => current_user.id %>
+    <%= f.hidden_field :event_id, :value => @event.id %>
+    <%= f.submit  %>
+  <% end %>
+  
+<% end %>
+
+<p>このイベントに参加する人</p>
+<% @participants.each do |participant| %>
+  <p><%= participant.user.name %>さん</p>
+<% end %>
+
+
+
+
 
