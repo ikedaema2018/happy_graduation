@@ -10,7 +10,7 @@ class EventsController < ApplicationController
       @event_user = @event_flag[0]
     end
 
-    @participants = EventUser.where(event_id: @event.id)
+    @participants = EventUser.where(event_id: @event.id).where(schedule_flag: 1)
 
   end
 

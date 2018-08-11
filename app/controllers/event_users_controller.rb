@@ -14,7 +14,6 @@ class EventUsersController < ApplicationController
   end
 
   def update
-    binding.pry
     @event_user = EventUser.find(params[:event_user][:id])
     respond_to do |format|
       if @event_user.update(event_user_params)
