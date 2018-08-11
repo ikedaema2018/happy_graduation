@@ -1,0 +1,13 @@
+<h1>Communities#show</h1>
+
+<p><%= flash[:notice] %></p>
+<p><%= flash[:success] %></p>
+
+<p>コミュニティID: <%= @community.id %></p>
+<p>コミュニティネーム: <%= @community.community_name %></p>
+<p>コミュニティの詳細: <%= @community.community_detail %></p>
+<p>コミュニティオーナー: <%= @community.user_id %></p>
+
+<% @community_tags.each do |community_tag| %>
+  <span><%= community_tag.community_tag_list_id %></span>
+<% end %>

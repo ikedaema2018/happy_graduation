@@ -1,5 +1,16 @@
 Rails.application.routes.draw do
  
+
+
+  get 'communities', to: 'communities#index'
+
+  get 'communities/new', to: 'communities#new'
+  post 'communities', to: 'communities#create'
+
+  get 'communities/:id', to: 'communities#show', as: 'community_show'
+
+  get 'communities/update'
+
   resources :community_tag_lists
   resources :event_category_lists
   

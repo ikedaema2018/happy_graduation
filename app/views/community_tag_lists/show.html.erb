@@ -1,0 +1,9 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Tag name:</strong>
+  <%= @community_tag_list.tag_name %>
+</p>
+
+<%= link_to 'Edit', edit_community_tag_list_path(@community_tag_list) %> |
+<%= link_to 'Back', community_tag_lists_path %>

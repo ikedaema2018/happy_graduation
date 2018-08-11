@@ -2,6 +2,7 @@ class User < ApplicationRecord
   has_many :event
   has_many :event_users
   has_many :event_messages
+  has_many :communities
 
   has_secure_password
 

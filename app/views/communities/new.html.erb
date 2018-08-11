@@ -1,0 +1,13 @@
+<h2>新しいコミュニティを作る</h2>
+
+<%= form_for(@community) do |f| %>
+  <%= f.label :community_name %><%= f.text_field :community_name %><br>
+  <%= f.label :community_detail %><%= f.text_area :community_detail %>
+
+  <%= collection_check_boxes(:community_tags, :community_tag_ids, @community_tag_lists, :id, :tag_name, include_hidden: false) do |b| %>
+    <%= b.label { b.check_box + b.text } %>
+  <% end %>
+  <%= f.hidden_field :user_id, value: current_user.id %>
+
+  <%= f.submit %>
+<% end %>

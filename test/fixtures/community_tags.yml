@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  tag_name: MyString
+  community_id: 1
+  tag_id: 1
+  community: one
+  community_tag_list: one
+
+two:
+  tag_name: MyString
+  community_id: 1
+  tag_id: 1
+  community: two
+  community_tag_list: two

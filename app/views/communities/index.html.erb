@@ -1,0 +1,22 @@
+<h1>Communities#index</h1>
+
+<p><%= notice %></p>
+<p><%= flash[:success] %></p>
+
+<table>
+  <tr>
+    <th>ID</th>
+    <th>コミュニティ名</th>
+    <th>このコミュニティを確認する</th>
+  </tr>
+
+  <% @communities.each do |community| %>
+    <tr>
+      <td><%= community.id %></td>
+      <td><%= community.community_name %></td>
+      <td><%= link_to 'コミュニティページへ', community_show_path(community) %></td>
+    </tr>
+  <% end %>
+</table>
+
+<%= link_to '新しいコミュニティを作る', communities_new_path %>

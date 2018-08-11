@@ -1,0 +1,2 @@
+module CommunityTagListsHelper
+end
