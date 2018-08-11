@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
  
+  resources :community_tag_lists
   resources :event_category_lists
   
   # scope 'events', as: 'events' do
