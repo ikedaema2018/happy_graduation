@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+ 
   resources :event_category_lists
   
   # scope 'events', as: 'events' do
@@ -26,10 +27,14 @@ Rails.application.routes.draw do
 
   resource :event_users, only: [ :create, :update ]
 
+  resources :event_messages, only: [ :create, :update ]
+
   get 'sessions/new'
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   resources :users
+
+
 
   get '/login', to: 'sessions#new'
   post '/login', to: 'sessions#create'

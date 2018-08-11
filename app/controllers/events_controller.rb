@@ -3,6 +3,7 @@ class EventsController < ApplicationController
 
   def show
     @event_flag = EventUser.where(user_id: current_user).where(event_id: @event.id)
+    @event_message = EventMessage.new
 
     if @event_flag.empty?
       @event_user = EventUser.new
@@ -11,7 +12,7 @@ class EventsController < ApplicationController
     end
 
     @participants = EventUser.where(event_id: @event.id).where(schedule_flag: 1)
-
+    @event_messages = EventMessage.where(event_id: @event.id)
   end
 
   def index
@@ -72,9 +73,9 @@ class EventsController < ApplicationController
     end
   end
 
-  def participate
+  # def participate
     
-  end
+  # end
 
 
 
@@ -86,7 +87,7 @@ private
 
 
   def event_params
-    params.require(:event).permit(:event_name, :event_category_list_id, :event_detail)
+    params.require(:event).permit(:event_name, :event_category_list_id, :event_detail, :user_id)
   end
 
   def event_fix_params

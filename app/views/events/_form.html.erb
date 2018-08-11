@@ -5,6 +5,6 @@
     <%= b.label {b.radio_button + b.text} %>
   <% end %>
   <%= f.label "イベントの詳細を入力してね" %><%= f.text_area :event_detail %>
-  
+  <%= f.hidden_field :user_id, value: current_user.id %>
   <%= f.submit %>
 <% end %>

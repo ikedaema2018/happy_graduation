@@ -7,6 +7,7 @@
 <p><%= @event.event_category_list.event_category_name %></p>
 <p><%= @event.event_detail %></p>
 <p><%= @event.event_flag %></p>
+<p>このイベントの管理者: <%= @event.user.name %></p>
 
 
 <% if @event_flag.nil? %>
@@ -40,6 +41,32 @@
 <% @participants.each do |participant| %>
   <p><%= participant.user.name %>さん</p>
 <% end %>
+
+<%= form_for(@event_message) do |f| %>
+  <p>このイベントにメッセージを送信する</p>
+  <label><%= f.text_field :content %></label>
+  
+  <%= f.hidden_field :user_id, value: current_user.id %>
+  <%= f.hidden_field :event_id, value: @event.id %>
+  <%= f.submit %>
+<% end %>
+
+
+<p>このイベントへのメッセージ一覧</p>
+<% @event_messages.each do |event_message| %>
+  <p><span><%= event_message.user.name %>さん: </span><%= event_message.content %></p>
+<% end %>
+
+
+<%= form_for(@event_message) do |f| %>
+  <p>このイベントにメッセージを送信する</p>
+  <label><%= f.text_field :content %></label>
+  
+  <%= f.hidden_field :user_id, value: current_user.id %>
+  <%= f.hidden_field :event_id, value: @event.id %>
+  <%= f.submit %>
+<% end %>
+
 
 
 
